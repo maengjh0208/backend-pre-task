@@ -1,10 +1,6 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import ContactViewSet
-
-router = DefaultRouter()
-router.register(r'contact', ContactViewSet)
+from django.urls import path
+from .views import ContactAPIView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('contact/', ContactAPIView.as_view(), name='contact-list'),
 ]
