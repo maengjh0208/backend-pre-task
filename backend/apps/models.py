@@ -11,6 +11,9 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'User'
+
 
 class Contact(models.Model):
     contact_id = models.AutoField(primary_key=True)
@@ -25,6 +28,9 @@ class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'Contact'
+
 
 class Label(models.Model):
     label_id = models.AutoField(primary_key=True)
@@ -33,6 +39,9 @@ class Label(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'Label'
+
 
 class ContactLabel(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
@@ -40,6 +49,7 @@ class ContactLabel(models.Model):
 
     class Meta:
         unique_together = (('contact', 'label'),)
+        db_table = 'ContactLabel'
 
 
 class ContactDetail(models.Model):
@@ -49,3 +59,6 @@ class ContactDetail(models.Model):
     value = models.CharField(max_length=255, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'ContactDetail'
