@@ -28,11 +28,12 @@ class ContactCreateSerializer(serializers.ModelSerializer):
     details = ContactDetailSerializer(many=True)
     label_ids = serializers.ListField(write_only=True, child=serializers.IntegerField())
     user_id = serializers.IntegerField(write_only=True)
+    labels = LabelSerializer(many=True, read_only=True)
 
     class Meta:
         model = Contact
         fields = ["user_id", "image_url", "name", "email", "phone_number", "company_name", "company_position", "memo",
-                  "label_ids", "details"]
+                  "label_ids", "details", "labels"]
 
     def create(self, validated_data):
         details = validated_data.pop("details")
