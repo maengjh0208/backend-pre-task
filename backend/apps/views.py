@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Contact
-from .serializers import ContactSerializer
+from .serializers import ContactSerializer, ContactCreateSerializer
 
 
 class CustomPagination(PageNumberPagination):
@@ -19,8 +19,8 @@ class CustomPagination(PageNumberPagination):
             return []
 
 
-class ContactListAPIView(APIView):
-    def get(self, request, *args, **kwargs):
+class ContactAPIView(APIView):
+    def get(self, request):
         user_id = request.query_params.get("user_id")
         sort = request.query_params.get("sort", None)
         order = request.query_params.get("order", "asc")
@@ -33,7 +33,8 @@ class ContactListAPIView(APIView):
             # 정렬 순서 중에 오름차순/내림차순/해제순이 있는데 해제순이 뭘 의미하는지 모르겠음 (일단 패스)
             sort = sort if order == "asc" else f"-{sort}"
 
-        # 원래라면 회원번호를 query_params가 아닌 token 등으로 판별하겠으나, 회원 기능 따로 구현하지 않아서 임시 대응
+        # 원래라면 회원번호를 query_params가 아닌 token 등으로 middleware 단에서 판별하겠으나, 회원 기능 따로 구현하지 않아서 임시 대응
+        # 그래서 일단 발생하는 문제는... 존재하지 않는 회원번호로 접근해도 에러 발생 안됨 ;
         if not user_id:
             return Response(
                 data={"error_message": "user_id is required"},
@@ -48,4 +49,12 @@ class ContactListAPIView(APIView):
 
         # 스크롤로 데이터가 더이상 존재하지 않을때까지 호출해주는 거니까 Response 사용해도 될 것 같음
         # return paginator.get_paginated_response(serializer.data)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = ContactCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
