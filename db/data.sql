@@ -3,13 +3,21 @@
 --VALUES
 --    ('juhee1', 'juhee1@example.com', 'password_1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 --    ('juhee2', 'juhee2@example.com', 'password_2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
---
---
---INSERT INTO Contact
---    (user_id, image_url, name, email, phone_number, company_name, company_position, memo, created_at, updated_at)
+
+--INSERT INTO Label
+--(user_id, label_name, created_at, updated_at)
 --VALUES
---    (1, 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', 'friend_1', 'friend_1@example.com', '01011112222', 'company_1', '사원', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
---    (1, 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', 'friend_2', 'friend_2@example.com', '01011113333', 'company_2', '주임', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
---    (1, 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', 'friend_3', 'friend_3@example.com', '01011114444', 'company_3', '대리', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
---    (1, 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', 'friend_4', 'friend_4@example.com', '01011115555', 'company_4', '과장', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
---    (1, 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', 'friend_5', 'friend_5@example.com', '01011116666', 'company_5', '차장', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+--(1, '친구', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+--(1, '회사', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+--INSERT INTO ContactLabel
+--(contact_id, label_id)
+--VALUES
+--(1, 1),
+--(2, 1),
+--(3, 1),
+--(4, 1),
+--(5, 1),
+--(3, 2),
+--(4, 2),
+--(5, 2);
