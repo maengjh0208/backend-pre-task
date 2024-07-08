@@ -31,6 +31,10 @@ class Contact(models.Model):
     class Meta:
         db_table = 'Contact'
 
+    @property
+    def labels(self):
+        return Label.objects.filter(contactlabel__contact=self)
+
 
 class Label(models.Model):
     label_id = models.AutoField(primary_key=True)
