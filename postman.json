@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "f973de3c-8dcc-4084-bcf1-f469858783be",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33385915"
+	},
+	"item": [
+		{
+			"name": "연락처 추가 API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"image_url\": \"https://ssl.pstatic.net/static/pwe/address/img_profile.png\",\n    \"name\": \"미나10\",\n    \"email\": \"mina_10@example.com\",\n    \"phone_number\": \"01022228899\",\n    \"company_name\": \"회사1\",\n    \"company_position\": \"백엔드 개발자\",\n    \"memo\": \"기타 등등\",\n    \"label_ids\": [1, 2],\n    \"details\": [\n        {\"type\": \"address\", \"value\": \"경기도 안양시 동안구 평촌동\"},\n        {\"type\": \"birthday\", \"value\": \"1994-02-08\"},\n        {\"type\": \"website\", \"value\": \"https://test.com\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/contacts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "연락처 목록 조회 API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/contacts?user_id=1&sort=name&order=desc&page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contacts"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						},
+						{
+							"key": "sort",
+							"value": "name"
+						},
+						{
+							"key": "order",
+							"value": "desc"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "연락처 상세 조회 API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/contacts/8?user_id=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contacts",
+						"8"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

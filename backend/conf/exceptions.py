@@ -4,7 +4,7 @@ from rest_framework import status
 
 class CustomValidationError(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
-    default_detail = 'Invalid input.'
+    default_detail = 'Invalid input'
 
     def __init__(self, message=None, status_code=None):
         message = message if message else self.default_detail
